@@ -1,0 +1,19 @@
+{
+  "name": "fitness",
+  "version": "0.0.0",
+  "description": "Find your fitness coach",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rvbsanjose/fitness.git"
+  },
+  "author": "Richard VanBreemen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rvbsanjose/fitness/issues"
+  },
+  "homepage": "https://github.com/rvbsanjose/fitness#readme"
+}
