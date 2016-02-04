@@ -14,12 +14,13 @@ module.exports = {
         hot: true,
         inline: true
     },
+    devtool: 'source-map',
     entry: {
         app: PATHS.src,
         vendor: PATHS.vendor
     },
     resolve: {
-        extensions: [ '', '.js', '.jsx' ]
+        extensions: [ '', '.js', '.jsx', '.scss' ]
     },
     output: {
         path: PATHS.dist,
@@ -30,6 +31,11 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loaders: [ 'babel' ],
+                include: PATHS.src
+            },
+            {
+                test: /\.scss$/,
+                loaders: [ 'style', 'css?sourceMap', 'sass?sourceMap' ],
                 include: PATHS.src
             }
         ]
