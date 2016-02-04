@@ -1,3 +1,5 @@
 require('./main');
 
-console.log('hello world...');
+let blah = 'blah';
+
+console.log('hello world...')
