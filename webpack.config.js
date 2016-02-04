@@ -10,6 +10,10 @@ const PATHS = {
 };
 
 module.exports = {
+    devServer: {
+        hot: true,
+        inline: true
+    },
     entry: {
         app: PATHS.src,
         vendor: PATHS.vendor
@@ -31,11 +35,14 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+
         new HtmlwebpackPlugin({
             title: 'Fitness',
             inject: false,
             template: './src/index.html'
         }),
+
         new webpack.optimize.CommonsChunkPlugin({
             names: [ 'vendor' ]
         })

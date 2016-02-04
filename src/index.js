@@ -1,3 +1,1 @@
-export default () => {
-    console.log('builds correctly!');
-}
+console.log('hello world...');

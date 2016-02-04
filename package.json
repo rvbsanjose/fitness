@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "build": "webpack --display-modules",
-    "test": "npm test"
+    "test": "npm test",
+    "dev": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
