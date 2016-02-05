@@ -1,7 +1,7 @@
 const pkg = require('./package.json'),
-      path = require('path'),
-      webpack = require('webpack'),
-      HtmlwebpackPlugin = require('html-webpack-plugin');
+    path = require('path'),
+    webpack = require('webpack'),
+    HtmlwebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
     src: path.join(__dirname, 'src'),
@@ -20,7 +20,7 @@ module.exports = {
         vendor: PATHS.vendor
     },
     resolve: {
-        extensions: [ '', '.js', '.jsx', '.scss' ]
+        extensions: [ '', '.js', '.jsx' ]
     },
     output: {
         path: PATHS.dist,
