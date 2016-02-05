@@ -1,4 +1,4 @@
-require('./main');
+require('./main.scss');
 
 let blah = 'blah';
 

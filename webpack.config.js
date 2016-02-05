@@ -4,8 +4,8 @@ const pkg = require('./package.json'),
     HtmlwebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
-    src: path.join(__dirname, 'src'),
     dist: path.join(__dirname, 'dist'),
+    src: path.join(__dirname, 'src'),
     vendor: Object.keys(pkg.dependencies)
 };
 
@@ -35,8 +35,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loaders: [ 'style', 'css?sourceMap', 'sass?sourceMap' ],
-                include: PATHS.src
+                loaders: [ 'style', 'css?sourceMap', 'sass?sourceMap' ]
             }
         ]
     },

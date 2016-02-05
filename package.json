@@ -7,7 +7,7 @@
     "test": "karma start",
     "lint": "eslint src",
     "dev": "webpack-dev-server",
-    "build": "webpack --config ./webpack.production.config.js"
+    "build": "webpack --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,7 @@
     "karma-mocha-reporter": "^1.1.5",
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-requirejs": "^0.2.4",
+    "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "node-sass": "^3.4.2",
     "phantomjs": "^2.1.3",

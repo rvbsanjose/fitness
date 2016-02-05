@@ -1,9 +1,14 @@
+const path = require('path')
+
+const PATHS = {
+    spec: path.join(__dirname, 'spec')
+};
+
 module.exports = function(config) {
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '',
-
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -11,25 +16,52 @@ module.exports = function(config) {
             'jasmine'
         ],
 
-
         // list of files / patterns to load in the browser
         files: [
             'spec/**/*.js'
         ],
-
 
         // list of files to exclude
         exclude: [
 
         ],
 
-
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-
+            'spec/**/*.js': [ 'webpack' ]
         },
 
+        webpack: {
+            devtool: 'source-map',
+            resolve: {
+                extensions: [ '', '.js' ]
+            },
+            module: {
+                loaders: [
+                    {
+                        test: /\.jsx?$/,
+                        loaders: [ 'babel' ],
+                        include: PATHS.spec
+                    }
+                ]
+            }
+        },
+
+        webpackMiddleware: {
+            noInfo: true,
+            stats: {
+                colors: true
+            }
+        },
+
+        plugins: [
+            require('karma-webpack'),
+            require('karma-jasmine'),
+            require('karma-sourcemap-loader'),
+            require('karma-mocha-reporter'),
+            require('karma-phantomjs-launcher')
+        ],
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
@@ -38,23 +70,18 @@ module.exports = function(config) {
             'mocha'
         ],
 
-
         // web server port
         port: 9876,
 
-
         // enable / disable colors in the output (reporters and logs)
         colors: true,
-
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
         logLevel: config.LOG_INFO,
 
-
         // enable / disable watching file and executing tests whenever any file changes
         autoWatch: true,
-
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
@@ -62,10 +89,9 @@ module.exports = function(config) {
             'PhantomJS'
         ],
 
-
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false,
+        singleRun: true,
 
         // Concurrency level
         // how many browser should be started simultaneous
