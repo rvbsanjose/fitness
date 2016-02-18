@@ -1,11 +1,8 @@
-let INIT = false;
+let INSTANCE;
 
 class Service {
     constructor() {
-        if (!INIT) {
-            Service.init();
-            this.services = {};
-        }
+        this.services = {};
     }
 
     register(opts) {
@@ -43,14 +40,22 @@ class Service {
 
         return this.services[ name ];
     }
-
-    static init() {
-        INIT = true;
-    }
 }
 
 function throwError(message) {
     throw new Error(message);
 }
 
-module.exports = Service;
+function getInstance() {
+    if (!INSTANCE) {
+        INSTANCE = new Service();
+
+        return INSTANCE;
+    }
+
+    return INSTANCE;
+}
+
+module.exports = {
+    getInstance
+};

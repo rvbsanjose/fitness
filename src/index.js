@@ -3,7 +3,7 @@ const Service = require('./lib/service'),
       serviceEnums = require('./enums/services');
 /* eslint-enable */
 
-const service = new Service();
+const service = Service.getInstance();
 
 // Register the service
 service.register({

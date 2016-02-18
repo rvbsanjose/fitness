@@ -2,16 +2,24 @@ const Service = require('../../src/lib/service');
 
 describe('The Service library', () => {
 
-    const s = new Service();
+    const s = Service.getInstance();
+
+    beforeEach(() => {
+        s.register(mockService());
+    });
+
+    afterEach(() => {
+        s.unregister(mockService().name);
+    });
 
     describe('Service should be a singleton', () => {
 
         it('should not re-initialize', () => {
-            spyOn(Service, 'init');
+            spyOn(Service, 'constructor');
 
-            new Service();
+            Service.getInstance();
 
-            expect(Service.init).not.toHaveBeenCalled();
+            expect(Service.constructor).not.toHaveBeenCalled();
         });
     });
 
@@ -39,8 +47,6 @@ describe('The Service library', () => {
         describe('When a service has yet to be registered', () => {
 
             it('should register the service', () => {
-                s.register(mockService());
-
                 expect(s.services[ 'test-service' ]).not.toBe(undefined);
             });
         });
