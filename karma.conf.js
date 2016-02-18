@@ -1,6 +1,7 @@
-const path = require('path')
+const path = require('path');
 
 const PATHS = {
+    src: path.join(__dirname, 'src'),
     spec: path.join(__dirname, 'spec')
 };
 
@@ -35,14 +36,17 @@ module.exports = function(config) {
         webpack: {
             devtool: 'source-map',
             resolve: {
-                extensions: [ '', '.js' ]
+                extensions: [ '', '.js', '.jsx' ]
             },
             module: {
                 loaders: [
                     {
                         test: /\.jsx?$/,
                         loaders: [ 'babel' ],
-                        include: PATHS.spec
+                        include: [
+                            PATHS.src,
+                            PATHS.spec
+                        ]
                     }
                 ]
             }
