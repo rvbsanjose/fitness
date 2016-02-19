@@ -8,57 +8,47 @@ class Firebase {
     /**
      * Wrapper around the actual Firebase method to create a new user
      * @param  {object} opts Requires email<string> and password<string>
-     * @return {undefined}
+     * @return {Promise}
      */
     createUser(opts) {
-        firebase.createUser(opts, handleResponse);
+        return firebase.createUser(opts);
     }
 
     /**
      * Wrapper around the actual Firebase method to login
      * @param  {object} opts Requires email<string> and password<string>
-     * @return {undefined}
+     * @return {Promise}
      */
     authWithPassword(opts) {
-        firebase.authWithPassword(opts, handleResponse);
+        return firebase.authWithPassword(opts);
     }
 
     /**
      * Wrapper around the actual Firebase method to change a user's email
      * @param  {object} opts Requires oldEmail<string>, newEmail<string>, and password<string>
-     * @return {undefined}
+     * @return {Promise}
      */
     changeEmail(opts) {
-        firebase.changeEmail(opts, handleResponse);
+        return firebase.changeEmail(opts);
     }
 
     /**
      * Wrapper around the actual Firebase method to change a user's password
      * @param  {object} opts Requires email<string>, oldPassword<string>, newPassword<string>
-     * @return {undefined}
+     * @return {Promise}
      */
     changePassword(opts) {
-        firebase.changePassword(opts, handleResponse);
+        return firebase.changePassword(opts);
     }
 
     /**
      * Wrapper around the actual Firebase method to reset a user's password
      * @param {object} opts Requires email<string>
-     * @return {undefined}
+     * @return {Promise}
      */
     resetPassword(opts) {
-        firebase.resetPassword(opts, handleResponse);
+        return firebase.resetPassword(opts);
     }
 }
 
-function handleResponse(error, userData) {
-    if (error) {
-        // TODO: handle the error possibly by displaying an error banner
-        console.log('error', error);
-    }
-
-    // TODO: handle a successfull response and redirect user to homepage?
-    console.log('userData', userData);
-}
-
-module.exports = Firebase;
+module.exports = new Firebase();

@@ -58,6 +58,7 @@
     "firebase": "^2.4.1",
     "immutable": "^3.7.6",
     "keymirror": "^0.1.1",
+    "q": "^1.4.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "redux": "^3.2.1"
