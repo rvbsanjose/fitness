@@ -1,7 +1,8 @@
 {
   "name": "fitness",
   "version": "0.0.0",
-  "description": "Find your fitness coach",
+  "private": true,
+  "description": "Finding a personal trainer shouldn't be hard so let us help you make it easy.",
   "main": "src/index.js",
   "scripts": {
     "test": "karma start",
@@ -13,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/rvbsanjose/fitness.git"
   },
-  "author": "Richard VanBreemen",
+  "author": "A JS ninja on planet Earth.",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rvbsanjose/fitness/issues"
@@ -54,6 +55,7 @@
     "yargs": "^3.32.0"
   },
   "dependencies": {
+    "firebase": "^2.4.1",
     "immutable": "^3.7.6",
     "keymirror": "^0.1.1",
     "react": "^0.14.7",

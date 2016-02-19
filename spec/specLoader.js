@@ -2,3 +2,4 @@
 require('babel-polyfill');
 
 require('./lib/service');
+require('./services/firebase');

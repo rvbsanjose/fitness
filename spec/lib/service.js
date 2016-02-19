@@ -47,7 +47,7 @@ describe('The Service library', () => {
         describe('When a service has yet to be registered', () => {
 
             it('should register the service', () => {
-                expect(s.services[ mockService().name ]).not.toBe(undefined);
+                expect(s.utilize(mockService().name)).not.toBe(undefined);
             });
         });
 
@@ -90,7 +90,9 @@ describe('The Service library', () => {
 
                 s.unregister('test-service-2');
 
-                expect(s.services[ 'test-service-2' ]).toBe(undefined);
+                expect(() => {
+                    s.utilize('test-service-2');
+                }).toThrowError('Service test-service-2 has not yet been registered.');
             });
         });
     });
@@ -118,7 +120,7 @@ describe('The Service library', () => {
         describe('When a service is present in the services object', () => {
 
             it('should return the service', () => {
-                expect(s.services[ mockService().name ]).not.toBe(undefined);
+                expect(s.utilize(mockService().name)).not.toBe(undefined);
             });
         });
     });
