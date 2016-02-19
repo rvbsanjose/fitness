@@ -47,7 +47,7 @@ describe('The Service library', () => {
         describe('When a service has yet to be registered', () => {
 
             it('should register the service', () => {
-                expect(s.services[ 'test-service' ]).not.toBe(undefined);
+                expect(s.services[ mockService().name ]).not.toBe(undefined);
             });
         });
 
@@ -57,6 +57,68 @@ describe('The Service library', () => {
                 expect(() => {
                     s.register(mockService());
                 }).toThrowError('Service test-service has already been registered.');
+            });
+        });
+    });
+
+    describe('Unregistering a service', () => {
+
+        describe('The options passed to the function', () => {
+
+            it('should throw an error if the name argument is missing', () => {
+                expect(() => {
+                    s.unregister().toThrowError('Unregistering a service requires a service name.');
+                });
+            });
+        });
+
+        describe('When a service has yet to be registered', () => {
+
+            it('should throw an error if the service is not yet registered', () => {
+                expect(() => {
+                    s.unregister('test').toThrowError('Service test has not yet been registered.');
+                });
+            });
+        });
+
+        describe('The service should not exist in the services object', () => {
+
+            it('should be an undefined service', () => {
+                s.register(Object.assign({}, mockService(), {
+                    name: 'test-service-2'
+                }));
+
+                s.unregister('test-service-2');
+
+                expect(s.services[ 'test-service-2' ]).toBe(undefined);
+            });
+        });
+    });
+
+    describe('Utilizing a service', () => {
+
+        describe('The options passed to the function', () => {
+
+            it('should throw an error if the service name is not present', () => {
+                expect(() => {
+                    s.utilize();
+                }).toThrowError('Utilizng a service requires a service name.');
+            });
+        });
+
+        describe('When a service has yet to be registered', () => {
+
+            it('should throw an error if the service is present', () => {
+                expect(() => {
+                    s.utilize('test-service-2');
+                }).toThrowError('Service test-service-2 has not yet been registered.');
+            });
+        });
+
+        describe('When a service is present in the services object', () => {
+
+            it('should return the service', () => {
+                expect(s.services[ mockService().name ]).not.toBe(undefined);
             });
         });
     });

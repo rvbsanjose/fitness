@@ -5,7 +5,7 @@ class Service {
         this.services = {};
     }
 
-    register(opts) {
+    register(opts = {}) {
         if (!opts.name || !opts.service) {
             throwError('Registering a service requires a name and service.');
         }
