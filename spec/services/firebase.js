@@ -1,6 +1,5 @@
 /* eslint-disable */
-const Q = require('q'),
-      firebase = require('../../src/services/firebase'),
+const firebase = require('../../src/services/firebase'),
       mock = require('../mocks/firebase/firebase'),
       userData = require('../mocks/firebase/userData');
 /* eslint-enable */
