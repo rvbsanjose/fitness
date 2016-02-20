@@ -1,7 +1,7 @@
 /* eslint-disable */
 const firebase = require('../../src/services/firebase'),
-      mock = require('../mocks/firebase/firebase'),
-      userData = require('../mocks/firebase/userData');
+      mock = require('../mocks/firebase/firebaseMock'),
+      userData = require('../mocks/firebase/userDataMock');
 /* eslint-enable */
 
 describe('The Firebase service', () => {

@@ -1,5 +1,9 @@
 // Polyfill for Object.assign
 require('babel-polyfill');
 
-require('./lib/service');
-require('./services/firebase');
+// Services
+require('./lib/serviceSpec');
+require('./services/firebaseSpec');
+
+// Actions
+require('./actions/trainers/trainersSpec');

@@ -8,12 +8,12 @@ const service = Service.getInstance();
 
 // Register the service
 service.register({
-    name: serviceEnums.firebase,
+    name: serviceEnums.FIREBASE,
     service: Firebase
 });
 
 // Consume the service
-const firebase = service.utilize(serviceEnums.firebase);
+const firebase = service.utilize(serviceEnums.FIREBASE);
 
 // Test the service
 firebase.authWithPassword({
@@ -22,5 +22,6 @@ firebase.authWithPassword({
 })
 /* eslint-disable */
 .then(rsp => console.log('rsp', rsp))
-.catch(err => console.log('err', err));
+.catch(err => console.log('err', err))
+.done();
 /* eslint-enable */

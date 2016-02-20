@@ -1,6 +1,6 @@
 /* eslint-disable */
 const Q = require('q'),
-      userData = require('./userData');
+      userData = require('./userDataMock');
 /* eslint-enable */
 
 module.exports = {
