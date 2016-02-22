@@ -28,7 +28,8 @@ describe('The trainers actions', () => {
                                 email: 'test@gmail.com',
                                 isTemporaryPassword: false,
                                 profileImageURL: 'https://www.google.com'
-                            }
+                            },
+                            uid: 'test'
                         }
                     });
                 }
@@ -37,7 +38,7 @@ describe('The trainers actions', () => {
             const store = createMockStore({}, expectedActions, done);
 
             /* eslint-disable */
-            spyOn(firebase, 'child').and.callFake((tableName) => {
+            spyOn(firebase, 'child').and.callFake(tableName => {
             /* eslint-enable */
                 firebaseMock.child(tableName).on('value', () => {
                     store.dispatch({

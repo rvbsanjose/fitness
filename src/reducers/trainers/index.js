@@ -4,28 +4,35 @@ const Immutable = require('immutable'),
       trainerRecord = require('../../records/trainers/trainersRecord');
 /* eslint-enable */
 
+/**
+ * Sets the initial state of trainers in the Redux store
+ * @return {object} Immutable object
+ */
 function makeInitialState() {
     return Immutable.fromJS({
-        trainers: Immutable.Map()
+        trainers: Immutable.Map({})
     });
 }
 
+/**
+ * Creates a new Immutable Record for a trainer
+ * @param  {object} trainer Trainer data mapped to an Immutable Record
+ * @return {object}         A new Immutable Record for a trainer
+ */
 function makeTrainerRecord(trainer) {
-    return trainerRecord({
-        id: trainer.uid,
-        provider: trainer.provider,
-        email: trainer.password.email,
-        profileImageUrl: trainer.password.profileImageURL
-    });
+    return trainerRecord(trainer);
 }
 
+/**
+ * Adds a trainer to the Redux store
+ * @param  {object} state  Current state of the Redux store
+ * @param  {action} action Properties of type<string> and trainer<object>
+ * @return {object}        New Redux store state with the added trainer
+ */
 function addTrainerToStore(state, action) {
-    /* eslint-disable */
-    const trainer = makeTrainerRecord(action.trainer),
-          retState = state.get('trainers');
-    /* eslint-enable */
+    const trainer = makeTrainerRecord(action.trainer);
 
-    return retState.set(trainer.id, trainer);
+    return state.setIn([ 'trainers', trainer.id ], trainer);
 }
 
 module.exports = (state = makeInitialState(), action) => {

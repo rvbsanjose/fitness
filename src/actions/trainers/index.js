@@ -7,8 +7,8 @@ const Service = require('../../lib/service'),
 /* eslint-enable */
 
 /**
- * Creates the payload for the Redux dispatcher to consume. Do not call this action unless
- * Firebase has resolved a successful promise with trainer data
+ * Creates the payload for the Redux dispatcher to consume. This function is only called
+ * when Firebase has return a successful snapshot of trainer data
  * @param  {object} trainer  Trainer data in Firebase table for trainers
  * @return {object}
  */

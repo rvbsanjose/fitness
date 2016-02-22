@@ -6,17 +6,20 @@ const Service = require('../src/lib/service'),
 
 const service = Service.getInstance();
 
-// Register the core service as a global for testing
+// Register the core services as a global for testing
 service.register({
     name: serviceEnums.FIREBASE,
     service: Firebase
 });
 
-// Consume the service
+// Consume the services
 global.firebase = service.utilize(serviceEnums.FIREBASE);
 
 // Polyfill for Object.assign
 require('babel-polyfill');
+
+// Add in matchers for immutables
+beforeEach(() => jasmine.addMatchers(require('jasmine-immutable-matchers')));
 
 // Services
 require('./lib/serviceSpec');
@@ -24,3 +27,6 @@ require('./services/firebaseSpec');
 
 // Actions
 require('./actions/trainers/trainersSpec');
+
+// Reducers
+require('./reducers/trainers/trainersSpec');

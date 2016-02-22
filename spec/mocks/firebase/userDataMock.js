@@ -8,5 +8,6 @@ module.exports = {
         email: 'test@gmail.com',
         isTemporaryPassword: false,
         profileImageURL: 'https://www.google.com'
-    }
+    },
+    uid: 'test'
 };

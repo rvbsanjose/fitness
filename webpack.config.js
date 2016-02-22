@@ -14,7 +14,7 @@ module.exports = {
         hot: true,
         inline: true
     },
-    devtool: '#inline-source-map',
+    devtool: 'source-map',
     entry: {
         app: PATHS.src,
         vendor: PATHS.vendor

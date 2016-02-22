@@ -1,8 +1,10 @@
 const Immutable = require('immutable');
 
-module.exports = Immutable.Record({
-    id: null,
-    provider: null,
-    email: null,
-    profileImageUrl: null
-});
+module.exports = trainer => {
+    return Immutable.Record({
+        id: trainer.uid,
+        provider: trainer.provider,
+        email: trainer.password.email,
+        profileImageUrl: trainer.password.profileImageURL
+    })();
+};
