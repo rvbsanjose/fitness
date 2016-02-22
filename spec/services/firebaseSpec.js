@@ -163,4 +163,17 @@ describe('The Firebase service', () => {
             });
         });
     });
+
+    describe('Getting a reference to the trainers table in Firebase', () => {
+
+        beforeEach(() => {
+            spyOn(firebase, 'child').and.callFake(table => {
+                return mock.child(table);
+            });
+        });
+
+        it('should return a reference to the trainers table in Firebase', () => {
+            expect(firebase.child('trainers')).toEqual(jasmine.any(Object));
+        });
+    });
 });

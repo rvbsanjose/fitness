@@ -5,5 +5,6 @@ const keymirror = require('keymirror');
  * @return {object}   An object who's value mirror the key
  */
 module.exports = keymirror({
-    users: null
+    users: null,
+    trainers: null
 });

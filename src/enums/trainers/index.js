@@ -1,5 +1,6 @@
 const keymirror = require('keymirror');
 
 module.exports = keymirror({
-    FIND_TRAINER: null
+    GET_TRAINER_BY_ID: null,
+    ADD_TRAINER_TO_STORE: null
 });

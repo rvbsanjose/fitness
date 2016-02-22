@@ -49,6 +49,15 @@ class Firebase {
     resetPassword(opts) {
         return firebase.resetPassword(opts);
     }
+
+    /**
+     * Wrapper around the actual Firebase method to return a table reference in Firebase
+     * @param  {string} tableName
+     * @return {object}           A reference to a table in Firebase
+     */
+    child(tableName) {
+        return firebase.child(tableName);
+    }
 }
 
 module.exports = new Firebase();

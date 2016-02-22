@@ -1,6 +1,7 @@
 /* eslint-disable */
 const Service = require('./lib/service'),
       Firebase = require('./services/firebase'),
+      store = require('./store/createStore'),
       serviceEnums = require('./enums/services');
 /* eslint-enable */
 
@@ -13,15 +14,8 @@ service.register({
 });
 
 // Consume the service
-const firebase = service.utilize(serviceEnums.FIREBASE);
+service.utilize(serviceEnums.FIREBASE);
 
-// Test the service
-firebase.authWithPassword({
-    email: 'test@gmail.com',
-    password: 'password'
-})
-/* eslint-disable */
-.then(rsp => console.log('rsp', rsp))
-.catch(err => console.log('err', err))
-.done();
-/* eslint-enable */
+const trainerActions = require('./actions/trainers');
+
+store.dispatch(trainerActions.fetchTrainerById('8a43265a-965f-4cc0-9fba-1e6c2231097f'));

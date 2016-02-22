@@ -52,5 +52,23 @@ module.exports = {
         }
 
         return Q(userData);
+    },
+
+    child(tableName) {
+        if (!tableName) {
+            return null;
+        }
+
+        return {
+            on: this.on
+        };
+    },
+
+    on(type, cb) {
+        if (!type || !cb) {
+            return null;
+        }
+
+        return cb();
     }
 };
