@@ -1,13 +1,9 @@
 module.exports = {
-    uuid: 'test',
-    provider: 'password',
-    token: '1',
-    auth: {},
-    expires: 1,
-    password: {
-        email: 'test@gmail.com',
-        isTemporaryPassword: false,
-        profileImageURL: 'https://www.google.com'
-    },
-    uid: 'test'
+    address: '555 Atmosphere Lane',
+    city: 'Playground',
+    firstName: 'Jessie',
+    idx: 1,
+    lastName: 'Poop',
+    state: 'CA',
+    zipCode: 95035
 };

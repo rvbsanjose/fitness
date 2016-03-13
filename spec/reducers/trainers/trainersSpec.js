@@ -19,19 +19,34 @@ describe('The trainers reducer', () => {
         });
     });
 
-    describe('Adding a new trainer', () => {
+    describe('Adding trainers to the redux store', () => {
 
-        it('should add the trainer to the Redux store', () => {
+        it('should properly set the trainers into the specified idx for retrieving', () => {
             const state = trainersReducer(trainersReducer(makeInitialState(), {}), {
-                type: trainerEnums.ADD_TRAINER_TO_STORE,
-                trainer: userDataMock
+                type: trainerEnums.ADD_TRAINERS_TO_STORE,
+                trainers: [
+                    {
+                        key: function() {
+                            return 'test1';
+                        },
+                        val: function() {
+                            return userDataMock;
+                        }
+                    },
+                    {
+                        key: function() {
+                            return 'test2';
+                        },
+                        val: function() {
+                            return userDataMock;
+                        }
+                    }
+                ],
+                idx: 1,
+                zipCode: 95035
             });
 
-            expect(state).toEqualImmutable(Immutable.fromJS({
-                trainers: Immutable.Map({
-                    test: trainersRecord(userDataMock)
-                })
-            }));
+            expect(state.getIn([ 'trainers', 95035, 1 ]).size).toEqual(2);
         });
     });
 });

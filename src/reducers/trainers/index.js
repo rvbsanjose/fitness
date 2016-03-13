@@ -24,21 +24,24 @@ function makeTrainerRecord(trainer) {
 }
 
 /**
- * Adds a trainer to the Redux store
- * @param  {object} state  Current state of the Redux store
- * @param  {action} action Properties of type<string> and trainer<object>
- * @return {object}        New Redux store state with the added trainer
+ * Adds a list of trainers not currently in the Redux store organized by an idx
+ * @param {object} state  Current state/representation of the Redux store
+ * @param {object} action Contains a list of trainers, action type, idx and zipCode
  */
-function addTrainerToStore(state, action) {
-    const trainer = makeTrainerRecord(action.trainer);
+function addTrainersToStore(state, action) {
+    const trainers = Immutable.OrderedMap().withMutations(map => {
+        action.trainers.forEach(trainer => {
+            map.set(trainer.key(), makeTrainerRecord(trainer.val()));
+        });
+    });
 
-    return state.setIn([ 'trainers', trainer.id ], trainer);
+    return state.setIn([ 'trainers', action.zipCode, action.idx ], trainers);
 }
 
 module.exports = (state = makeInitialState(), action) => {
     switch(action.type) {
-        case trainerEnums.ADD_TRAINER_TO_STORE:
-            return addTrainerToStore(state, action);
+        case trainerEnums.ADD_TRAINERS_TO_STORE:
+            return addTrainersToStore(state, action);
         default:
             return state;
     }

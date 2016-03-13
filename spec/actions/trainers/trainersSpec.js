@@ -1,5 +1,6 @@
 /* eslint-disable */
-const trainerEnums = require('../../../src/enums/trainers'),
+const Immutable = require('immutable'),
+      trainerEnums = require('../../../src/enums/trainers'),
       firebaseTableEnums = require('../../../src/enums/firebase/tableEnums'),
       trainerActions = require('../../../src/actions/trainers'),
       userDataMock = require('../../mocks/firebase/userDataMock'),
@@ -9,7 +10,7 @@ const trainerEnums = require('../../../src/enums/trainers'),
 
 describe('The trainers actions', () => {
 
-    describe('Fetching a trainer by ID', () => {
+    describe('Fetching a collection of trainers', () => {
 
         let expectedActions;
 
@@ -17,38 +18,44 @@ describe('The trainers actions', () => {
             expectedActions = [
                 action => {
                     expect(action).toEqual({
-                        type: trainerEnums.ADD_TRAINER_TO_STORE,
-                        trainer: {
-                            uuid: 'test',
-                            provider: 'password',
-                            token: '1',
-                            auth: {},
-                            expires: 1,
-                            password: {
-                                email: 'test@gmail.com',
-                                isTemporaryPassword: false,
-                                profileImageURL: 'https://www.google.com'
-                            },
-                            uid: 'test'
-                        }
+                        type: trainerEnums.ADD_TRAINERS_TO_STORE,
+                        trainers: [ {
+                            address: '555 Atmosphere Lane',
+                            city: 'Playground',
+                            firstName: 'Jessie',
+                            idx: 1,
+                            lastName: 'Poop',
+                            state: 'CA',
+                            zipCode: 95035
+                        } ],
+                        idx: 1,
+                        zipCode: 95035
                     });
                 }
             ];
 
-            const store = createMockStore({}, expectedActions, done);
+            const store = createMockStore(makeInitialState(), expectedActions, done);
 
             /* eslint-disable */
             spyOn(firebase, 'child').and.callFake(tableName => {
             /* eslint-enable */
                 firebaseMock.child(tableName).on('value', () => {
                     store.dispatch({
-                        type: trainerEnums.ADD_TRAINER_TO_STORE,
-                        trainer: userDataMock
+                        type: trainerEnums.ADD_TRAINERS_TO_STORE,
+                        trainers: [ userDataMock ],
+                        idx: 1,
+                        zipCode: 95035
                     });
                 });
             });
 
-            store.dispatch(trainerActions.fetchTrainerById(firebaseTableEnums.trainers + '/test'));
+            store.dispatch(trainerActions.fetchTrainers(1, 95035, 10));
         });
     });
 });
+
+function makeInitialState() {
+    return Immutable.fromJS({
+        trainers: Immutable.Map()
+    });
+}

@@ -7,32 +7,43 @@ const Service = require('../../lib/service'),
 /* eslint-enable */
 
 /**
- * Creates the payload for the Redux dispatcher to consume. This function is only called
- * when Firebase has return a successful snapshot of trainer data
- * @param  {object} trainer  Trainer data in Firebase table for trainers
- * @return {object}
+ * Creates the payload for the Redux dispatcher to consume. This funciton is only called
+ * when Firebase has return a successful snapshot of trainers data
+ * @param {object} trainers A collection of trainers stored in Firebase
  */
-function addTrainertoStore(trainer) {
+function addTrainersToStore(trainers, idx, zipCode) {
     return {
-        type: trainerEnums.ADD_TRAINER_TO_STORE,
-        trainer
+        type: trainerEnums.ADD_TRAINERS_TO_STORE,
+        trainers,
+        idx,
+        zipCode
     };
 }
 
 /**
- * Fetches a trainer saved in the Firebase trainers table
- * @param  {string} id ID which represents the trainers in Firebase trainers table
- * @param  {function}  Callback function to handle the response from Firebase
- * @return {object}    Trainer data in Firebase table for trainers
+ * Fetches a collection of trainers in the Firebase trainers table starting at an index.
+ * @param  {number} idx     An idx of which to start fetching records from
+ * @param  {number} zipCode Which zip code of trainers to fetch by
+ * @return {object}         A collection of trainers
  */
-function fetchTrainerById(id) {
-    return dispatch => {
-        return firebase.child(firebaseTableEnums.trainers + '/' + id).on('value', trainer => {
-            dispatch(addTrainertoStore(trainer.val()));
-        });
+function fetchTrainers(idx, zipCode) {
+    return (dispatch, getState) => {
+        const trainers = getState().getIn([ 'trainers', zipCode, idx ]);
+
+        if (trainers && trainers.size) {
+            throw new Error('The requested trainers is already available in the Redux store');
+        }
+
+        return firebase
+            .child(firebaseTableEnums.trainers)
+            .child(zipCode)
+            .orderByChild('idx')
+            .startAt(idx)
+            .limitToFirst(10)
+            .once('value', trainers => dispatch(addTrainersToStore(trainers, idx, zipCode)));
     };
 }
 
 module.exports = {
-    fetchTrainerById
+    fetchTrainers
 };
