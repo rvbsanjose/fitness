@@ -1,0 +1,22 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:700);
+
+.mdl-layout__header {
+    .mdl-layout-title {
+        cursor: pointer;
+        font-size: 30px;
+        font-weight: 900;
+        font-family: 'Roboto Slab', sans-serif;
+    }
+
+    .mdl-navigation__link {
+        border-bottom: 4px solid transparent;
+
+        &:hover {
+            border-bottom: 4px solid rgb(255, 82, 82);
+        }
+    }
+
+    .material-icons {
+        line-height: 20px;
+    }
+}

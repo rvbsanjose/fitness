@@ -7,6 +7,8 @@ module.exports = trainer => {
         address: trainer.address,
         city: trainer.city,
         state: trainer.state,
-        zipCode: trainer.zipCode
+        profilePic: trainer.profilePic,
+        zipCode: trainer.zipCode,
+        experience: trainer.experience
     })();
 };

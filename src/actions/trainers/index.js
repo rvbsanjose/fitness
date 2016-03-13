@@ -27,6 +27,8 @@ function addTrainersToStore(trainers, idx, zipCode) {
  * @return {object}         A collection of trainers
  */
 function fetchTrainers(idx, zipCode) {
+    const actualIdx = idx - 1;
+
     return (dispatch, getState) => {
         const trainers = getState().getIn([ 'trainers', zipCode, idx ]);
 
@@ -38,12 +40,13 @@ function fetchTrainers(idx, zipCode) {
             .child(firebaseTableEnums.trainers)
             .child(zipCode)
             .orderByChild('idx')
-            .startAt(idx)
+            .startAt(actualIdx * 10)
             .limitToFirst(10)
-            .once('value', trainers => dispatch(addTrainersToStore(trainers, idx, zipCode)));
+            .once('value');
     };
 }
 
 module.exports = {
-    fetchTrainers
+    fetchTrainers,
+    addTrainersToStore
 };

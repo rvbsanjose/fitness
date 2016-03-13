@@ -5,7 +5,8 @@ module.exports = {
             general: [
                 {
                     type: 'input',
-                    fieldName: 'Name'
+                    fieldName: 'Name',
+                    placeholder: 'Type your first name...'
                 },
                 {
                     type: 'radio',
@@ -14,11 +15,13 @@ module.exports = {
                 },
                 {
                     type: 'input',
-                    fieldName: 'Address'
+                    fieldName: 'Address',
+                    placeholder: 'Type your home address...'
                 },
                 {
                     type: 'input',
-                    fieldName: 'City'
+                    fieldName: 'City',
+                    placeholder: 'Type your city...'
                 },
                 {
                     type: 'select',
@@ -26,21 +29,25 @@ module.exports = {
                 },
                 {
                     type: 'input',
-                    fieldName: 'Zip Code'
+                    fieldName: 'Zip Code',
+                    placeholder: 'Type your zip code...'
                 },
                 {
                     type: 'input',
-                    fieldName: 'Mobile'
+                    fieldName: 'Mobile',
+                    placeholder: 'Type your mobile phone number...'
                 },
                 {
                     type: 'input',
-                    fieldName: 'Email'
+                    fieldName: 'Email',
+                    placeholder: 'Type your email address...'
                 }
             ],
             trainers: [
                 {
                     type: 'input',
-                    fieldName: 'Years you\'ve been a trainer'
+                    fieldName: 'Years you\'ve been a trainer',
+                    placeholder: 'Please be as accurate as possible...'
                 }
             ],
             palestrato: [
