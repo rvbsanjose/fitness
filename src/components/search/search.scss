@@ -1,9 +1,21 @@
-.mdl-button.mdl-button--colored {
-    color: rgb(255,82,82);
-}
-
-form {
+.search {
     display: flex;
-    flex-flow: row nowrap;
     justify-content: center;
+
+    .mdl-grid {
+        justify-content: center;
+    }
+
+    .mdl-card {
+        width: 320px;
+        height: 320px;
+
+        .mdl-card__supporting-text {
+            text-align: left;
+        }
+
+        .mdl-button--colored {
+            color: rgb(255, 82, 82);
+        }
+    }
 }

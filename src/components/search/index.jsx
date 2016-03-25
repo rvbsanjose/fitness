@@ -2,6 +2,7 @@
 const React = require('react'),
       PureRenderMixin = require('react-addons-pure-render-mixin'),
       connect = require('react-redux').connect,
+      helpers = require('../../helpers'),
       trainerActions = require('../../actions/trainers');
 /* eslint-enable */
 
@@ -62,42 +63,35 @@ const Search = React.createClass({
         ]) || [];
 
         return (
-          <main className="mdl-layout__content">
-            <div className="mdl-grid">
-              <div className="mdl-layout-spacer"></div>
-              <form action="#">
-                <div className="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                  <label className="mdl-button mdl-js-button mdl-button--icon" htmlFor="sample6">
-                    <i className="material-icons">search</i>
-                  </label>
-                  <div className="mdl-textfield__expandable-holder">
-                    <input className="mdl-textfield__input" type="text" id="sample6" />
-                    <label className="mdl-textfield__label" htmlFor="sample-expandable">Expandable Input</label>
-                  </div>
-                </div>
-              </form>
-              {
-                trainers.reduce((trainers, trainer, idx) => {
-                  trainers.push(
-                    <div className="section--center mdl-grid mdl-shadow--2dp mdl-cell mdl-cell--12-col-desktop">
-                      <header className="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color-text--white" style={{background: 'url(' + trainer.get('profilePic') + ') center / cover'}}></header>
-                      <div className="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                        <div className="mdl-card__supporting-text">
-                          <h4>{trainer.get('firstName') + ' ' + trainer.get('lastName')}</h4>
-                          {trainer.get('experience')}
-                        </div>
-                        <div className="mdl-card__actions">
-                          <a href="#" className="mdl-button">More Details</a>
-                        </div>
-                      </div>
-                    </div>
-                  );
+            <div className="search">
+                <div className="mdl-grid">
+                    {
+                        trainers.reduce((trainers, trainer, idx) => {
+                            trainers.push(
+                                <div key={helpers.keyIterator(idx)} className="mdl-card mdl-shadow--2dp mdl-cell">
+                                    <div
+                                      className="mdl-card__title mdl-card--expand"
+                                      style={{background: 'url(' + trainer.get('profilePic') + ') center / cover'}}>
+                                    </div>
+                                    <div className="mdl-card__supporting-text">
+                                        <h2 className="mdl-card__title-text">
+                                            {helpers.fullName(trainer)}
+                                        </h2>
+                                        {helpers.trim(trainer.get('experience'), 75)}
+                                    </div>
+                                    <div className="mdl-card__actions mdl-card--border">
+                                        <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                          View Details
+                                        </a>
+                                    </div>
+                                </div>
+                            );
 
-                  return trainers;
-                }, [])
-              }
+                            return trainers;
+                        }, [])
+                    }
+                </div>
             </div>
-          </main>
         );
     }
 });

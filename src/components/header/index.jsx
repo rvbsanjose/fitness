@@ -29,9 +29,21 @@ const Header = React.createClass({
                     <span className="mdl-layout-title">Fitness</span>
                     <div className="mdl-layout-spacer"></div>
                     <nav className="mdl-navigation">
-                        <a ref="search" className="mdl-navigation__link mdl-typography--text-uppercase" href="#">About</a>
-                        <a ref="search" className="mdl-navigation__link mdl-typography--text-uppercase" href="#">Contact</a>
-                        <a ref="search" className="mdl-navigation__link mdl-typography--text-uppercase" href="#">Coaches</a>
+                        <a ref="search"
+                          className="mdl-navigation__link mdl-typography--text-uppercase mdl-layout--large-screen-only"
+                          href="#">
+                          About
+                        </a>
+                        <a ref="search"
+                          className="mdl-navigation__link mdl-typography--text-uppercase mdl-layout--large-screen-only"
+                          href="#">
+                          Contact
+                        </a>
+                        <a ref="search"
+                          className="mdl-navigation__link mdl-typography--text-uppercase mdl-layout--large-screen-only"
+                          href="#">
+                          Coaches
+                        </a>
                     </nav>
                     <button className="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
                         <i className="material-icons">list</i>

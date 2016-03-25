@@ -7,7 +7,7 @@ const React = require('react'),
 const App = React.createClass({
     render() {
         return (
-            <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button">
                 <Header />
                 <Drawer />
                 {this.props.children}
