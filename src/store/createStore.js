@@ -3,9 +3,9 @@ const Redux = require('redux'),
       thunk = require('redux-thunk'),
       createStore = Redux.createStore,
       applyMiddleware = Redux.applyMiddleware,
-      trainersReducer = require('../reducers/trainers');
+      coachesReducer = require('../reducers/coaches');
 /* eslint-enable */
 
-const store = createStore(trainersReducer, applyMiddleware(thunk));
+const store = createStore(coachesReducer, applyMiddleware(thunk));
 
 module.exports = store;

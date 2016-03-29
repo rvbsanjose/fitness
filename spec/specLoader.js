@@ -26,7 +26,7 @@ require('./lib/serviceSpec');
 require('./services/firebaseSpec');
 
 // Actions
-require('./actions/trainers/trainersSpec');
+require('./actions/coaches/coachesSpec');
 
 // Reducers
-require('./reducers/trainers/trainersSpec');
+require('./reducers/coaches/coachesSpec');

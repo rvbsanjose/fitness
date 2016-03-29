@@ -22,8 +22,6 @@ service.register({
 // Consume the service
 service.utilize(serviceEnums.FIREBASE);
 
-const trainerActions = require('./actions/trainers');
-
 // Component views
 /* eslint-disable */
 const App = require('./components/app'),

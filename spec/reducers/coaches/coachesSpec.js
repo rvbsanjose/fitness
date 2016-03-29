@@ -1,30 +1,30 @@
 /* eslint-disable */
 const Immutable = require('immutable'),
-      trainersRecord = require('../../../src/records/trainers/trainersRecord'),
-      trainerEnums = require('../../../src/enums/trainers'),
+      coachesRecord = require('../../../src/records/coaches/coachesRecord'),
+      coachEnums = require('../../../src/enums/coaches'),
       userDataMock = require('../../mocks/firebase/userDataMock'),
-      trainersReducer = require('../../../src/reducers/trainers');
+      coachesReducer = require('../../../src/reducers/coaches');
 /* eslint-enable */
 
-describe('The trainers reducer', () => {
+describe('The coaches reducer', () => {
 
     describe('The initial state', () => {
 
-        it('should properly set the initial state of the Redux store for trainers', () => {
-            const state = trainersReducer(makeInitialState(), {});
+        it('should properly set the initial state of the Redux store for coaches', () => {
+            const state = coachesReducer(makeInitialState(), {});
 
             expect(state).toEqualImmutable(Immutable.fromJS({
-                trainers: Immutable.Map()
+                coaches: Immutable.Map()
             }));
         });
     });
 
-    describe('Adding trainers to the redux store', () => {
+    describe('Adding coaches to the redux store', () => {
 
-        it('should properly set the trainers into the specified idx for retrieving', () => {
-            const state = trainersReducer(trainersReducer(makeInitialState(), {}), {
-                type: trainerEnums.ADD_TRAINERS_TO_STORE,
-                trainers: [
+        it('should properly set the coaches into the specified idx for retrieving', () => {
+            const state = coachesReducer(coachesReducer(makeInitialState(), {}), {
+                type: coachEnums.ADD_COACHES_TO_STORE,
+                coaches: [
                     {
                         key: function() {
                             return 'test1';
@@ -46,13 +46,13 @@ describe('The trainers reducer', () => {
                 zipCode: 95035
             });
 
-            expect(state.getIn([ 'trainers', 95035, 1 ]).size).toEqual(2);
+            expect(state.getIn([ 'coaches', 95035, 1 ]).size).toEqual(2);
         });
     });
 });
 
 function makeInitialState() {
     return Immutable.fromJS({
-        trainers: Immutable.Map()
+        coaches: Immutable.Map()
     });
 }

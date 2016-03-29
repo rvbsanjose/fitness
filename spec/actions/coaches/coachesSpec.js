@@ -1,16 +1,16 @@
 /* eslint-disable */
 const Immutable = require('immutable'),
-      trainerEnums = require('../../../src/enums/trainers'),
+      coachEnums = require('../../../src/enums/coaches'),
       firebaseTableEnums = require('../../../src/enums/firebase/tableEnums'),
-      trainerActions = require('../../../src/actions/trainers'),
+      coachActions = require('../../../src/actions/coaches'),
       userDataMock = require('../../mocks/firebase/userDataMock'),
       firebaseMock = require('../../mocks/firebase/firebaseMock'),
       createMockStore = require('../../utils/createMockStore');
 /* eslint-enable */
 
-describe('The trainers actions', () => {
+describe('The coaches actions', () => {
 
-    describe('Fetching a collection of trainers', () => {
+    describe('Fetching a collection of coaches', () => {
 
         let expectedActions;
 
@@ -18,8 +18,8 @@ describe('The trainers actions', () => {
             expectedActions = [
                 action => {
                     expect(action).toEqual({
-                        type: trainerEnums.ADD_TRAINERS_TO_STORE,
-                        trainers: [ {
+                        type: coachEnums.ADD_COACHES_TO_STORE,
+                        coaches: [ {
                             address: '555 Atmosphere Lane',
                             city: 'Playground',
                             firstName: 'Jessie',
@@ -41,21 +41,21 @@ describe('The trainers actions', () => {
             /* eslint-enable */
                 firebaseMock.child(tableName).on('value', () => {
                     store.dispatch({
-                        type: trainerEnums.ADD_TRAINERS_TO_STORE,
-                        trainers: [ userDataMock ],
+                        type: coachEnums.ADD_COACHES_TO_STORE,
+                        coaches: [ userDataMock ],
                         idx: 1,
                         zipCode: 95035
                     });
                 });
             });
 
-            store.dispatch(trainerActions.fetchTrainers(1, 95035, 10));
+            store.dispatch(coachActions.fetchCoaches(1, 95035, 10));
         });
     });
 });
 
 function makeInitialState() {
     return Immutable.fromJS({
-        trainers: Immutable.Map()
+        coaches: Immutable.Map()
     });
 }

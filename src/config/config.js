@@ -43,7 +43,7 @@ module.exports = {
                     placeholder: 'Type your email address...'
                 }
             ],
-            trainers: [
+            coaches: [
                 {
                     type: 'input',
                     fieldName: 'Years you\'ve been a trainer',

@@ -9,5 +9,15 @@ module.exports = {
 
     trim(text, length) {
         return text.slice(0, length) + '...';
+    },
+
+    range(start, stop) {
+        const range = [];
+
+        for (let i = start; i <= stop; i++) {
+            range.push(i);
+        }
+
+        return range;
     }
 };
