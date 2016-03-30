@@ -74,9 +74,9 @@ const Pagination = React.createClass({
     renderPagination() {
         const pages = this.buildPageRange();
 
-        return pages.reduce((pages, page, idx) => {
+        return pages.reduce((pages, page) => {
             pages.push(
-                <button key={helpers.keyIterator(idx)}
+                <button key={helpers.keyIterator(page)}
                   onClick={this.props.updateSearch}
                   className={this.getClassNames(page)} value={page}>
                   {this.getPageName(page)}

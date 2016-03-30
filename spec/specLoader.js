@@ -30,3 +30,7 @@ require('./actions/coaches/coachesSpec');
 
 // Reducers
 require('./reducers/coaches/coachesSpec');
+
+// Components
+// Search
+require('./components/search/paginationSpec');
