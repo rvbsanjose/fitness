@@ -20,7 +20,7 @@ const Search = React.createClass({
 
     getInitialState() {
         return {
-            page: 1,
+            page: null,
             zipCode: null,
             hasMore: false,
             isFetching: false
